@@ -1,0 +1,2 @@
+WE use DTO objects to tranfer data between to server to client or vice versa.
+Now inspite of passing a single data we can create a dto class and transfer bulk amount of data between server and client.
