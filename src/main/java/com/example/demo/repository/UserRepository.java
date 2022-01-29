@@ -9,4 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<User,Long>{
     // after extending this repository we are able to leverage crud operations on our user table
+
+    //here we will write a method which will retreive a user by his/her email address
+    User findByEmail(String email);
 }
