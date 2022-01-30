@@ -9,27 +9,26 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configurers.userdetails.DaoAuthenticationConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration
-@EnableWebSecurity //this will basically integrate spring security with spring MVC 
-
+//this will basically integrate spring security with spring MVC 
 // the below extended class provides us with overrided methods for us to configure spring security according to our need
+@Configuration
+@EnableWebSecurity 
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
-
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){
+        return new  BCryptPasswordEncoder();
+    }
 
     @Autowired
     private UserService userService;
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+   
     // we are using spring data JPA and hibernate so in order to integrate spring data jpa and hibernate with spring security we need to provide a bin 
     @Bean
     public DaoAuthenticationProvider authenticationProvider()
